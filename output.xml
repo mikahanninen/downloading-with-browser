@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.0.3 (Python 3.7.5 on win32)" generated="20210610 22:36:21.081" rpa="true" schemaversion="2">
+<suite id="s1" name="Tasks" source="k:\Koodi\testground\download-with-ie\tasks.robot">
+<test id="s1-t1" name="Minimal Task">
+<kw name="Set Download Directory" library="RPA.Browser.Selenium">
+<arg>%ROBOT_ARTIFACTS%</arg>
+<doc>Set browser download directory</doc>
+<msg timestamp="20210610 22:36:21.522" level="INFO">Download directory set to: %ROBOT_ARTIFACTS%</msg>
+<status status="PASS" starttime="20210610 22:36:21.521" endtime="20210610 22:36:21.522"/>
+</kw>
+<kw name="Open Available Browser" library="RPA.Browser.Selenium">
+<arg>${website}</arg>
+<arg>browser_selection=chrome</arg>
+<doc>Attempts to open a browser on the user's device from a set of
+supported browsers. Automatically downloads a corresponding webdriver
+if none is already installed.</doc>
+<msg timestamp="20210610 22:36:21.523" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<msg timestamp="20210610 22:36:21.535" level="INFO">Created download root directory: C:\Users\koti\AppData\Local\robocorp\webdrivers</msg>
+<msg timestamp="20210610 22:36:21.535" level="INFO">Created symlink directory: C:\Users\koti\AppData\Local\robocorp\webdrivers</msg>
+<msg timestamp="20210610 22:36:21.535" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<msg timestamp="20210610 22:36:22.751" level="INFO">Created chrome browser with arguments: --disable-dev-shm-usage --disable-web-security --allow-running-insecure-content --no-sandbox</msg>
+<msg timestamp="20210610 22:36:22.751" level="INFO" html="true">&lt;p&gt;Attempted combinations:&lt;/p&gt;&lt;div class="doc"&gt;&lt;table&gt;&lt;tr&gt;&lt;th&gt;Browser&lt;/th&gt;&lt;th&gt;Download&lt;/th&gt;&lt;th&gt;Error&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;chrome&lt;/td&gt;&lt;td&gt;False&lt;/td&gt;&lt;td&gt;Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;chrome&lt;/td&gt;&lt;td&gt;True&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</msg>
+<msg timestamp="20210610 22:36:22.751" level="INFO">Opening url 'https://downloads.robocorp.com/rcc/releases/index.html'</msg>
+<status status="PASS" starttime="20210610 22:36:21.522" endtime="20210610 22:36:23.042"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="RPA.Browser.Selenium">
+<arg>(//ul//li/a)[1]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20210610 22:36:23.043" endtime="20210610 22:36:23.068"/>
+</kw>
+<kw name="Click Element" library="RPA.Browser.Selenium">
+<arg>(//ul//li/a)[1]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210610 22:36:23.068" level="INFO">Clicking element '(//ul//li/a)[1]'.</msg>
+<status status="PASS" starttime="20210610 22:36:23.068" endtime="20210610 22:36:23.143"/>
+</kw>
+<kw name="Execute Javascript" library="RPA.Browser.Selenium">
+<arg>window.open('about:blank','_blank');</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20210610 22:36:23.144" level="INFO">Executing JavaScript:
+window.open('about:blank','_blank');
+Without any arguments.</msg>
+<status status="PASS" starttime="20210610 22:36:23.143" endtime="20210610 22:36:23.171"/>
+</kw>
+<kw name="Switch Window" library="RPA.Browser.Selenium">
+<arg>NEW</arg>
+<doc>Switches to browser window matching ``locator``.</doc>
+<status status="PASS" starttime="20210610 22:36:23.172" endtime="20210610 22:36:23.182"/>
+</kw>
+<kw name="Go To" library="RPA.Browser.Selenium">
+<arg>chrome://downloads</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20210610 22:36:23.182" level="INFO">Opening url 'chrome://downloads'</msg>
+<status status="PASS" starttime="20210610 22:36:23.182" endtime="20210610 22:36:23.466"/>
+</kw>
+<for flavor="IN RANGE">
+<var>${_}</var>
+<value>${DOWNLOAD_TIMEOUT}</value>
+<iter>
+<var name="${_}">0</var>
+<kw name="Are All Downloads Complete">
+<var>${result}</var>
+<kw name="Check Downloaded Items">
+<var>${items}</var>
+<kw name="Execute Javascript" library="RPA.Browser.Selenium">
+<var>${result}</var>
+<arg>return document.querySelector('downloads-manager').shadowRoot.getElementById('downloadsList').items;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20210610 22:36:23.468" level="INFO">Executing JavaScript:
+return document.querySelector('downloads-manager').shadowRoot.getElementById('downloadsList').items;
+Without any arguments.</msg>
+<msg timestamp="20210610 22:36:23.472" level="INFO">${result} = [{'byExtId': '', 'byExtName': '', 'dangerType': '', 'dateString': '10. kesäkuuta 2021', 'fileExternallyRemoved': False, 'fileName': 'rcc.exe', 'filePath': 'C:\\Users\\koti\\Downloads\\rcc.exe', 'fileU...</msg>
+<status status="PASS" starttime="20210610 22:36:23.467" endtime="20210610 22:36:23.472"/>
+</kw>
+<msg timestamp="20210610 22:36:23.472" level="INFO">${items} = [{'byExtId': '', 'byExtName': '', 'dangerType': '', 'dateString': '10. kesäkuuta 2021', 'fileExternallyRemoved': False, 'fileName': 'rcc.exe', 'filePath': 'C:\\Users\\koti\\Downloads\\rcc.exe', 'fileU...</msg>
+<status status="PASS" starttime="20210610 22:36:23.467" endtime="20210610 22:36:23.472"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${all_done}</var>
+<arg>${TRUE}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20210610 22:36:23.473" level="INFO">${all_done} = True</msg>
+<status status="PASS" starttime="20210610 22:36:23.473" endtime="20210610 22:36:23.473"/>
+</kw>
+<for flavor="IN">
+<var>${item}</var>
+<value>@{items}</value>
+<iter>
+<var name="${item}">{'byExtId': '', 'byExtName': '', 'dangerType': '', 'dateString': '10. kesäkuuta 2021', 'fileExternallyRemoved': False, 'fileName': 'rcc.exe', 'filePath': 'C:\\Users\\koti\\Downloads\\rcc.exe', 'fileUr...</var>
+<if>
+<branch type="IF" condition="&quot;${item}[state]&quot; != &quot;COMPLETE&quot;">
+<kw name="Set Variable" library="BuiltIn">
+<var>${all_done}</var>
+<arg>${FALSE}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20210610 22:36:23.474" level="INFO">${all_done} = False</msg>
+<status status="PASS" starttime="20210610 22:36:23.473" endtime="20210610 22:36:23.474"/>
+</kw>
+<kw name="Exit For Loop" library="BuiltIn">
+<doc>Stops executing the enclosing for loop.</doc>
+<msg timestamp="20210610 22:36:23.474" level="INFO">Exiting for loop altogether.</msg>
+<status status="PASS" starttime="20210610 22:36:23.474" endtime="20210610 22:36:23.474"/>
+</kw>
+<status status="PASS" starttime="20210610 22:36:23.473" endtime="20210610 22:36:23.474"/>
+</branch>
+<status status="PASS" starttime="20210610 22:36:23.473" endtime="20210610 22:36:23.474"/>
+</if>
+<status status="PASS" starttime="20210610 22:36:23.473" endtime="20210610 22:36:23.474"/>
+</iter>
+<status status="PASS" starttime="20210610 22:36:23.473" endtime="20210610 22:36:23.474"/>
+</for>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${returnable}</var>
+<arg>all_done=${all_done}</arg>
+<arg>items=${items}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20210610 22:36:23.475" level="INFO">${returnable} = {'all_done': False, 'items': [{'byExtId': '', 'byExtName': '', 'dangerType': '', 'dateString': '10. kesäkuuta 2021', 'fileExternallyRemoved': False, 'fileName': 'rcc.exe', 'filePath': 'C:\\Users\\koti...</msg>
+<status status="PASS" starttime="20210610 22:36:23.474" endtime="20210610 22:36:23.475"/>
+</kw>
+<msg timestamp="20210610 22:36:23.475" level="INFO">${result} = {'all_done': False, 'items': [{'byExtId': '', 'byExtName': '', 'dangerType': '', 'dateString': '10. kesäkuuta 2021', 'fileExternallyRemoved': False, 'fileName': 'rcc.exe', 'filePath': 'C:\\Users\\koti...</msg>
+<status status="PASS" starttime="20210610 22:36:23.467" endtime="20210610 22:36:23.475"/>
+</kw>
+<if>
+<branch type="IF" condition="${result}[all_done]">
+<kw name="Exit For Loop" library="BuiltIn">
+<doc>Stops executing the enclosing for loop.</doc>
+<status status="NOT RUN" starttime="20210610 22:36:23.476" endtime="20210610 22:36:23.476"/>
+</kw>
+<status status="NOT RUN" starttime="20210610 22:36:23.476" endtime="20210610 22:36:23.476"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log" library="BuiltIn">
+<arg>Downloading...</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20210610 22:36:23.476" level="INFO">Downloading...</msg>
+<status status="PASS" starttime="20210610 22:36:23.476" endtime="20210610 22:36:23.476"/>
+</kw>
+<status status="PASS" starttime="20210610 22:36:23.476" endtime="20210610 22:36:23.476"/>
+</branch>
+<status status="PASS" starttime="20210610 22:36:23.475" endtime="20210610 22:36:23.476"/>
+</if>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210610 22:36:24.477" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20210610 22:36:23.476" endtime="20210610 22:36:24.477"/>
+</kw>
+<status status="PASS" starttime="20210610 22:36:23.466" endtime="20210610 22:36:24.477"/>
+</iter>
+<iter>
+<var name="${_}">1</var>
+<kw name="Are All Downloads Complete">
+<var>${result}</var>
+<kw name="Check Downloaded Items">
+<var>${items}</var>
+<kw name="Execute Javascript" library="RPA.Browser.Selenium">
+<var>${result}</var>
+<arg>return document.querySelector('downloads-manager').shadowRoot.getElementById('downloadsList').items;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20210610 22:36:24.479" level="INFO">Executing JavaScript:
+return document.querySelector('downloads-manager').shadowRoot.getElementById('downloadsList').items;
+Without any arguments.</msg>
+<msg timestamp="20210610 22:36:24.483" level="INFO">${result} = [{'byExtId': '', 'byExtName': '', 'dangerType': '', 'dateString': '10. kesäkuuta 2021', 'fileExternallyRemoved': False, 'fileName': 'rcc.exe', 'filePath': 'C:\\Users\\koti\\Downloads\\rcc.exe', 'fileU...</msg>
+<status status="PASS" starttime="20210610 22:36:24.479" endtime="20210610 22:36:24.483"/>
+</kw>
+<msg timestamp="20210610 22:36:24.484" level="INFO">${items} = [{'byExtId': '', 'byExtName': '', 'dangerType': '', 'dateString': '10. kesäkuuta 2021', 'fileExternallyRemoved': False, 'fileName': 'rcc.exe', 'filePath': 'C:\\Users\\koti\\Downloads\\rcc.exe', 'fileU...</msg>
+<status status="PASS" starttime="20210610 22:36:24.478" endtime="20210610 22:36:24.484"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${all_done}</var>
+<arg>${TRUE}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20210610 22:36:24.484" level="INFO">${all_done} = True</msg>
+<status status="PASS" starttime="20210610 22:36:24.484" endtime="20210610 22:36:24.484"/>
+</kw>
+<for flavor="IN">
+<var>${item}</var>
+<value>@{items}</value>
+<iter>
+<var name="${item}">{'byExtId': '', 'byExtName': '', 'dangerType': '', 'dateString': '10. kesäkuuta 2021', 'fileExternallyRemoved': False, 'fileName': 'rcc.exe', 'filePath': 'C:\\Users\\koti\\Downloads\\rcc.exe', 'fileUr...</var>
+<if>
+<branch type="IF" condition="&quot;${item}[state]&quot; != &quot;COMPLETE&quot;">
+<kw name="Set Variable" library="BuiltIn">
+<var>${all_done}</var>
+<arg>${FALSE}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20210610 22:36:24.485" level="INFO">${all_done} = False</msg>
+<status status="PASS" starttime="20210610 22:36:24.485" endtime="20210610 22:36:24.485"/>
+</kw>
+<kw name="Exit For Loop" library="BuiltIn">
+<doc>Stops executing the enclosing for loop.</doc>
+<msg timestamp="20210610 22:36:24.485" level="INFO">Exiting for loop altogether.</msg>
+<status status="PASS" starttime="20210610 22:36:24.485" endtime="20210610 22:36:24.485"/>
+</kw>
+<status status="PASS" starttime="20210610 22:36:24.485" endtime="20210610 22:36:24.485"/>
+</branch>
+<status status="PASS" starttime="20210610 22:36:24.484" endtime="20210610 22:36:24.485"/>
+</if>
+<status status="PASS" starttime="20210610 22:36:24.484" endtime="20210610 22:36:24.485"/>
+</iter>
+<status status="PASS" starttime="20210610 22:36:24.484" endtime="20210610 22:36:24.485"/>
+</for>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${returnable}</var>
+<arg>all_done=${all_done}</arg>
+<arg>items=${items}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20210610 22:36:24.486" level="INFO">${returnable} = {'all_done': False, 'items': [{'byExtId': '', 'byExtName': '', 'dangerType': '', 'dateString': '10. kesäkuuta 2021', 'fileExternallyRemoved': False, 'fileName': 'rcc.exe', 'filePath': 'C:\\Users\\koti...</msg>
+<status status="PASS" starttime="20210610 22:36:24.486" endtime="20210610 22:36:24.486"/>
+</kw>
+<msg timestamp="20210610 22:36:24.486" level="INFO">${result} = {'all_done': False, 'items': [{'byExtId': '', 'byExtName': '', 'dangerType': '', 'dateString': '10. kesäkuuta 2021', 'fileExternallyRemoved': False, 'fileName': 'rcc.exe', 'filePath': 'C:\\Users\\koti...</msg>
+<status status="PASS" starttime="20210610 22:36:24.477" endtime="20210610 22:36:24.486"/>
+</kw>
+<if>
+<branch type="IF" condition="${result}[all_done]">
+<kw name="Exit For Loop" library="BuiltIn">
+<doc>Stops executing the enclosing for loop.</doc>
+<status status="NOT RUN" starttime="20210610 22:36:24.487" endtime="20210610 22:36:24.487"/>
+</kw>
+<status status="NOT RUN" starttime="20210610 22:36:24.487" endtime="20210610 22:36:24.487"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log" library="BuiltIn">
+<arg>Downloading...</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20210610 22:36:24.487" level="INFO">Downloading...</msg>
+<status status="PASS" starttime="20210610 22:36:24.487" endtime="20210610 22:36:24.487"/>
+</kw>
+<status status="PASS" starttime="20210610 22:36:24.487" endtime="20210610 22:36:24.487"/>
+</branch>
+<status status="PASS" starttime="20210610 22:36:24.487" endtime="20210610 22:36:24.487"/>
+</if>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210610 22:36:25.492" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20210610 22:36:24.487" endtime="20210610 22:36:25.492"/>
+</kw>
+<status status="PASS" starttime="20210610 22:36:24.477" endtime="20210610 22:36:25.492"/>
+</iter>
+<iter>
+<var name="${_}">2</var>
+<kw name="Are All Downloads Complete">
+<var>${result}</var>
+<kw name="Check Downloaded Items">
+<var>${items}</var>
+<kw name="Execute Javascript" library="RPA.Browser.Selenium">
+<var>${result}</var>
+<arg>return document.querySelector('downloads-manager').shadowRoot.getElementById('downloadsList').items;</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20210610 22:36:25.493" level="INFO">Executing JavaScript:
+return document.querySelector('downloads-manager').shadowRoot.getElementById('downloadsList').items;
+Without any arguments.</msg>
+<msg timestamp="20210610 22:36:25.498" level="INFO">${result} = [{'byExtId': '', 'byExtName': '', 'dangerType': '', 'dateString': '10. kesäkuuta 2021', 'fileExternallyRemoved': False, 'fileName': 'rcc.exe', 'filePath': 'C:\\Users\\koti\\Downloads\\rcc.exe', 'fileU...</msg>
+<status status="PASS" starttime="20210610 22:36:25.493" endtime="20210610 22:36:25.498"/>
+</kw>
+<msg timestamp="20210610 22:36:25.498" level="INFO">${items} = [{'byExtId': '', 'byExtName': '', 'dangerType': '', 'dateString': '10. kesäkuuta 2021', 'fileExternallyRemoved': False, 'fileName': 'rcc.exe', 'filePath': 'C:\\Users\\koti\\Downloads\\rcc.exe', 'fileU...</msg>
+<status status="PASS" starttime="20210610 22:36:25.493" endtime="20210610 22:36:25.498"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${all_done}</var>
+<arg>${TRUE}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20210610 22:36:25.499" level="INFO">${all_done} = True</msg>
+<status status="PASS" starttime="20210610 22:36:25.499" endtime="20210610 22:36:25.499"/>
+</kw>
+<for flavor="IN">
+<var>${item}</var>
+<value>@{items}</value>
+<iter>
+<var name="${item}">{'byExtId': '', 'byExtName': '', 'dangerType': '', 'dateString': '10. kesäkuuta 2021', 'fileExternallyRemoved': False, 'fileName': 'rcc.exe', 'filePath': 'C:\\Users\\koti\\Downloads\\rcc.exe', 'fileUr...</var>
+<if>
+<branch type="IF" condition="&quot;${item}[state]&quot; != &quot;COMPLETE&quot;">
+<kw name="Set Variable" library="BuiltIn">
+<var>${all_done}</var>
+<arg>${FALSE}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20210610 22:36:25.500" endtime="20210610 22:36:25.500"/>
+</kw>
+<kw name="Exit For Loop" library="BuiltIn">
+<doc>Stops executing the enclosing for loop.</doc>
+<status status="NOT RUN" starttime="20210610 22:36:25.500" endtime="20210610 22:36:25.500"/>
+</kw>
+<status status="NOT RUN" starttime="20210610 22:36:25.499" endtime="20210610 22:36:25.500"/>
+</branch>
+<status status="PASS" starttime="20210610 22:36:25.499" endtime="20210610 22:36:25.500"/>
+</if>
+<status status="PASS" starttime="20210610 22:36:25.499" endtime="20210610 22:36:25.500"/>
+</iter>
+<status status="PASS" starttime="20210610 22:36:25.499" endtime="20210610 22:36:25.500"/>
+</for>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${returnable}</var>
+<arg>all_done=${all_done}</arg>
+<arg>items=${items}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20210610 22:36:25.501" level="INFO">${returnable} = {'all_done': True, 'items': [{'byExtId': '', 'byExtName': '', 'dangerType': '', 'dateString': '10. kesäkuuta 2021', 'fileExternallyRemoved': False, 'fileName': 'rcc.exe', 'filePath': 'C:\\Users\\koti\...</msg>
+<status status="PASS" starttime="20210610 22:36:25.500" endtime="20210610 22:36:25.501"/>
+</kw>
+<msg timestamp="20210610 22:36:25.501" level="INFO">${result} = {'all_done': True, 'items': [{'byExtId': '', 'byExtName': '', 'dangerType': '', 'dateString': '10. kesäkuuta 2021', 'fileExternallyRemoved': False, 'fileName': 'rcc.exe', 'filePath': 'C:\\Users\\koti\...</msg>
+<status status="PASS" starttime="20210610 22:36:25.492" endtime="20210610 22:36:25.501"/>
+</kw>
+<if>
+<branch type="IF" condition="${result}[all_done]">
+<kw name="Exit For Loop" library="BuiltIn">
+<doc>Stops executing the enclosing for loop.</doc>
+<msg timestamp="20210610 22:36:25.501" level="INFO">Exiting for loop altogether.</msg>
+<status status="PASS" starttime="20210610 22:36:25.501" endtime="20210610 22:36:25.501"/>
+</kw>
+<status status="PASS" starttime="20210610 22:36:25.501" endtime="20210610 22:36:25.501"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log" library="BuiltIn">
+<arg>Downloading...</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20210610 22:36:25.501" endtime="20210610 22:36:25.502"/>
+</kw>
+<status status="NOT RUN" starttime="20210610 22:36:25.501" endtime="20210610 22:36:25.502"/>
+</branch>
+<status status="PASS" starttime="20210610 22:36:25.501" endtime="20210610 22:36:25.502"/>
+</if>
+<status status="PASS" starttime="20210610 22:36:25.492" endtime="20210610 22:36:25.502"/>
+</iter>
+<status status="PASS" starttime="20210610 22:36:23.466" endtime="20210610 22:36:25.502"/>
+</for>
+<status status="PASS" starttime="20210610 22:36:21.520" endtime="20210610 22:36:25.502"/>
+</test>
+<status status="PASS" starttime="20210610 22:36:21.084" endtime="20210610 22:36:25.503"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tasks</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Tasks">Tasks</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
